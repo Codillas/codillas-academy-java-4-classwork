@@ -29,8 +29,8 @@ public class Main {
 
         // classic for loop + break
         System.out.println("Classic for loop + break");
-        for (int i = 0; i < numbers.length; i++){
-            if (numbers[i] == 30){
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] == 30) {
                 break;
             }
             System.out.println(numbers[i]);
@@ -52,6 +52,32 @@ public class Main {
                 continue;
             }
             System.out.println(n);
+        }
+
+
+        int[] arr = {-3, -2, -1, 0, 1, 2, 3};
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+
+        // Написати програму що виводить тільки додатні елементи масиву
+        System.out.println("Додатні елементи масиву");
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > 0) {
+                System.out.println(arr[i]);
+            }
+        }
+
+        // Написати програму що робить усі від’ємні елементи масиву
+        // додатніми і збільшує їх удвічі застосовуючи елвіс оператор.
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = arr[i] < 0 ? arr[i] * -2 : arr[i];
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
         }
 
     }
