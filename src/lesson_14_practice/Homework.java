@@ -16,7 +16,7 @@ public class Homework {
         System.out.print("Введіть m (стовпці): ");
         int m = scanner.nextInt();
 
-        int[][] array = new int[n][m];
+        int[][] matrix = new int[n][m];
 
         // Заповнюємо масив
         System.out.println("Введіть елементи масиву:");
@@ -31,7 +31,7 @@ public class Homework {
                 //            [1, 0]  [1, 1]
                 //               3       4
                 System.out.printf("array[%d][%d] = ", i, j);
-                array[i][j] = scanner.nextInt();
+                matrix[i][j] = scanner.nextInt();
             }
         }
 
@@ -52,8 +52,8 @@ public class Homework {
 
                 case 1 -> {
                     int sum = 0;
-                    for (int[] a : array) {
-                        for (int b : a) {
+                    for (int[] array : matrix) {
+                        for (int b : array) {
                             sum = sum + b;
                         }
                     }
@@ -64,7 +64,7 @@ public class Homework {
                     int sum = 0;
                     int count = n * m;
 
-                    for (int[] a : array) {
+                    for (int[] a : matrix) {
                         for (int b : a) {
                             sum = sum + b;
                         }
@@ -75,9 +75,9 @@ public class Homework {
                 }
 
                 case 3 -> {
-                    int max = array[0][0];
+                    int max = matrix[0][0];
 
-                    for (int[] a : array) {
+                    for (int[] a : matrix) {
                         for (int b : a) {
                             if (b > max) {
                                 max = b;
