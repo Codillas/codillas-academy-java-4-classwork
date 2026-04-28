@@ -2,7 +2,7 @@ package lesson_14_practice;
 
 import java.util.Scanner;
 
-public class Main {
+public class Homework {
 
     void main() {
 
