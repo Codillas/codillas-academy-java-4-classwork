@@ -47,7 +47,7 @@ public class Main {
         System.out.println("Сума елементів у масиві: " + sum);
 
         // Середнє арифметичне значення елементів.
-        System.out.println("Середнє арифметичне значення: " + sum / arr.length);
+        System.out.println("Середнє арифметичне значення: " + (double) sum / arr.length);
 
         // Максимальне значення в масиві.
         int max = arr[0];
