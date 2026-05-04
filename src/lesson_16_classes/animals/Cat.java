@@ -1,5 +1,7 @@
 package lesson_16_classes.animals;
 
+import lesson_16_classes.food.Fish;
+
 public class Cat {
 
     // Додаємо поля
@@ -47,4 +49,30 @@ public class Cat {
         this.weight = weight;
     }
 
+    @Override
+    public String toString() {
+        return "Cat {" +
+                "name='" + name + '\'' +
+                " age=" + age +
+                " weight=" + weight +
+                '}';
+    }
+
+
+    // Що може робити кіт?
+    // голос
+    // голос + параметр
+    // щось їсти
+
+    public void voice() {
+        System.out.println("Мяуууууу!");
+    }
+
+    public void voice(String word) {
+        System.out.println("Мяууууууу! " + word);
+    }
+
+    public void eat(Fish fish) {
+        System.out.println("Дякую я поїв " + fish.getType());
+    }
 }
