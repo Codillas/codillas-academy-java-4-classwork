@@ -1,6 +1,8 @@
 package lesson_16_classes.animals;
 
+
 import lesson_16_classes.food.Fish;
+import lesson_16_classes.sound.Quack;
 
 public class Cat {
 
@@ -72,7 +74,15 @@ public class Cat {
         System.out.println("Мяууууууу! " + word);
     }
 
-    public void eat(Fish fish) {
+    public Quack eat(Fish fish) {
         System.out.println("Дякую я поїв " + fish.getType());
+
+        Quack quack = new Quack("Гучний квак");
+        return quack;
+    }
+
+    // static method
+    public static void defaultVoice() {
+        System.out.println("Статичний мяяууу");
     }
 }

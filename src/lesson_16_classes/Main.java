@@ -2,6 +2,7 @@ package lesson_16_classes;
 
 import lesson_16_classes.animals.Cat;
 import lesson_16_classes.food.Fish;
+import lesson_16_classes.sound.Quack;
 
 public class Main {
     static void main() {
@@ -29,6 +30,13 @@ public class Main {
         vasya.voice("Покорми мене!");
 
         Fish fish = new Fish("Лосось");
-        vasya.eat(fish);
+
+        Quack quack = vasya.eat(fish);
+        System.out.println(quack.getType());
+
+
+        // static method
+
+        Cat.defaultVoice();
     }
 }
