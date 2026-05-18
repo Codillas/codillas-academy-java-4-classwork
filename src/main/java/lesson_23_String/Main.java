@@ -12,6 +12,11 @@ public class Main {
         int majorityElement = Solution.majorityElement(nums);
         System.out.println(majorityElement);
 
+        int[] arr = {0,1,2,2,3,0,4,2};
+        int val = 2;
+        int k = Solution.removeElement(arr, val);
+        System.out.println(k);
+
     }
 
 
