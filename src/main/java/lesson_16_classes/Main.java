@@ -22,6 +22,7 @@ public class Main {
 
 
         Cat vasya = new Cat("Вася", 12, 5.5, Breed.SPHINX);
+        Cat cat2 = new Cat("Вася", 12, 5.5, Breed.SPHINX);
 
         System.out.println("Котика звати: " +  vasya.getName());
         System.out.println("Вік кота: " +  vasya.getAge());
@@ -56,5 +57,15 @@ public class Main {
             case BOMBAY -> System.out.println("програма зупиниться тут, тому що локі за параметрами Бомбей");
             default -> System.out.println("Локі, ти звичайний німецький дворовий кіт!");
         }
+
+        System.out.println();
+        System.out.println("------------");
+        System.out.println(loki.equals(vasya));
+        System.out.println(vasya.equals(cat2));
+        System.out.println();
+        System.out.println(loki.hashCode());
+        System.out.println(vasya.hashCode());
+        System.out.println(cat2.hashCode());
+
     }
 }
