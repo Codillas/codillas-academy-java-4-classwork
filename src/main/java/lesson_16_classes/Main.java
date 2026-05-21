@@ -2,6 +2,7 @@ package lesson_16_classes;
 
 import lesson_16_classes.animals.Breed;
 import lesson_16_classes.animals.Cat;
+import lesson_16_classes.animals.Fox;
 import lesson_16_classes.food.Fish;
 import lesson_16_classes.sound.Quack;
 
@@ -66,6 +67,16 @@ public class Main {
         System.out.println(loki.hashCode());
         System.out.println(vasya.hashCode());
         System.out.println(cat2.hashCode());
+
+
+        Fox fox = new Fox();
+        fox.setAge(3);
+        fox.setWeight(5);
+        fox.setRabid(false);
+        System.out.println("Вік лисички: " + fox.getAge() + "роки");
+        System.out.println("Вага лисички: " + fox.getWeight());
+        fox.voice();
+        vasya.purr();
 
     }
 }
