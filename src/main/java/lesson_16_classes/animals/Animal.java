@@ -1,7 +1,6 @@
 package lesson_16_classes.animals;
 
-public class Animal {
-
+public abstract class Animal {
 
     private double weight;
     private int age;
@@ -13,6 +12,9 @@ public class Animal {
        this.weight = weight;
        this.age = age;
    }
+
+    public abstract void voice();
+
 
     public int getAge() {
         return age;
@@ -30,8 +32,6 @@ public class Animal {
         this.age = age;
     }
 
-    public void voice() {
-        System.out.println("Всі тварини кажуть так: ");
-    }
+
 
 }
