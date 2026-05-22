@@ -73,7 +73,7 @@ public class Main {
         fox.setAge(3);
         fox.setWeight(5);
         fox.setRabid(false);
-        System.out.println("Вік лисички: " + fox.getAge() + "роки");
+        System.out.println("Вік лисички: " + fox.getAge() + " роки");
         System.out.println("Вага лисички: " + fox.getWeight());
         fox.voice();
         vasya.purr();

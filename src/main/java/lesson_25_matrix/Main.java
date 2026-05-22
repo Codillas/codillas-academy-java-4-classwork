@@ -46,17 +46,3 @@ public class Main {
 }
 
 
-
-int[][] transpose(int[][] matrix) {
-    int rows = matrix.length;
-    int cols = matrix[0].length;
-    int [][] result = new int [rows][cols];
-
-    for (int i = 0; i < matrix.length; i++) {
-        for (int j = 0; j < result[i].length; j++) {
-            result[j][i] = matrix[i][j];
-        }
-    }
-    return result;
-}
-

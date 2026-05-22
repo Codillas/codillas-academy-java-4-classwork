@@ -32,4 +32,8 @@ public class Fox extends Animal {
     public void setRabid(boolean rabid) {
         rabies = rabid;
     }
+
+    public boolean isRabies() {
+        return rabies;
+    }
 }
