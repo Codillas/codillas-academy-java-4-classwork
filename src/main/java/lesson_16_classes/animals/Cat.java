@@ -91,7 +91,6 @@ public class Cat extends Animal {
            return false;
        }
 
-
        Cat otherCat = (Cat) obj;
 
        return this.name.equals(otherCat.name)
