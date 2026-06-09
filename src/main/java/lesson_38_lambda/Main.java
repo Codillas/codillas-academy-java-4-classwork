@@ -1,6 +1,4 @@
-package main.lesson_38_lambda;
-
-import org.w3c.dom.ls.LSOutput;
+package lesson_38_lambda;
 
 public class Main {
     static void main() {

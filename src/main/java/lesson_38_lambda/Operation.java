@@ -1,4 +1,4 @@
-package main.lesson_38_lambda;
+package lesson_38_lambda;
 
 import lombok.Data;
 
