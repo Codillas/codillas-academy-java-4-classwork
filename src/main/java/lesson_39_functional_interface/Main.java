@@ -15,10 +15,12 @@ public class Main {
         System.out.println(isNumberNegative.test(0));
         System.out.println(isNumberNegative.test(-2));
 
+
 //    2.Consumer
 //        Реалізувати консьюмер, який виводить в консоль об'єкт Кота в красивому вигляді в консоль.
         Consumer<String> prettyCat = name -> System.out.println("Pretty cat: " + name);
         prettyCat.accept("(=^･ω･^=)");
+
 
 //    3.Supplier
 //        який повертає рандомне число
@@ -37,8 +39,6 @@ public class Main {
 
 //    4.Function
 //        який переводить інт у стрінг
-
-
         Function<Integer, String> exchange = x -> String.valueOf(x);
         System.out.println("Our string: " + exchange.apply(23));
 
@@ -49,7 +49,6 @@ public class Main {
 //        кота в єнота (перетворюю клас в клас)
         Function<Cat, Racoon> catToRacoon2 = x -> new Racoon();
         System.out.println("Magic transformation: " + catToRacoon.apply(new Cat()));
-
 
 
 //    5.Unary Operator
