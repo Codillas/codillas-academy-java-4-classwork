@@ -1,0 +1,174 @@
+openapi: 3.1.1
+
+info:
+  title: Loyalty Card
+  version: 1.0.0
+
+servers:
+  - url: 'http://localhost:8080'
+
+tags:
+  - name: Auth
+    description: Auth description
+  - name: Group 2
+    description: just for check
+
+paths:
+  /login:
+    post:
+      summary: Login endpoint
+      tags:
+        - Auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenResponse"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        429:
+          description: To many request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /SignUp:
+    post:
+      summary: Sign up endpoint
+      tags:
+        - Auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignUpRequest"
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenResponse"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        429:
+          description: To many request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    LoginRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          required: true
+          example: "codillas@gmail.com"
+        password:
+          type: string
+          format: password
+          writeOnly: true
+          required: true
+          example: 'Best_secure_password'
+      additionalProperties: false
+#============
+    SignUpRequest:
+      type: object
+      required:
+        - name
+        - phoneNumber
+        - email
+        - password
+      properties:
+        name:
+          type: string
+          required: true
+          example: Vasya Pupkin
+        phoneNumber:
+          type: string
+          required: true
+          example: +417612312312
+        email:
+          type: string
+          format: email
+          required: true
+          example: "codillas@gmail.com"
+        password:
+          type: string
+          format: password
+          writeOnly: true
+          required: true
+          example: 'Best_secure_password'
+        address:
+          type: string
+          required: false
+          example: Haupt Strasse 1
+      additionalProperties: false
+
+#============
+    TokenResponse:
+      type: objext
+      required:
+        - token
+      properties:
+        token:
+          type: string
+          format: text
+          description: JWT
+          example: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiJ9.abc123
+          tokenType:
+            type: string
+            example: Bearer
+          expiresIn:
+            type: integer
+            description: Час життя токена в секундах
+            example: 3600
+
+    #============
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Error message
