@@ -8,17 +8,20 @@ servers:
   - url: 'http://localhost:8080'
 
 tags:
-  - name: Auth
-    description: Auth description
-  - name: Group 2
-    description: just for check
+  - name: Auth for customers
+    description: Auth description for customers
+  - name: Auth for admins
+    description: Auth description for admins
+  - name: Transactions
+    description: Endpoint for CRUD transactions
 
 paths:
+  #Auth
   /login:
     post:
-      summary: Login endpoint
+      summary: Login endpoint customers
       tags:
-        - Auth
+        - Auth for customers
       requestBody:
         content:
           application/json:
@@ -58,9 +61,9 @@ paths:
 
   /SignUp:
     post:
-      summary: Sign up endpoint
+      summary: Sign up endpoint customers
       tags:
-        - Auth
+        - Auth for customers
       requestBody:
         content:
           application/json:
@@ -92,7 +95,103 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /admins/login:
+    post:
+      summary: Login endpoint admins
+      tags:
+        - Auth for admins
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenResponse"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        429:
+          description: To many request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+# Transactions
+  /cards/{cardId}/transactions:
+    post:
+      parameters:
+        - $ref: "#/components/parameters/cardId"
+      summary: Create new transactions
+      tags:
+        - Transactions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Transaction"
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+
+
+
+
+
 components:
+  parameters:
+# CARDS
+    cardId:
+      name: cardId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
   schemas:
     LoginRequest:
       type: object
@@ -145,10 +244,9 @@ components:
           required: false
           example: Haupt Strasse 1
       additionalProperties: false
-
 #============
     TokenResponse:
-      type: objext
+      type: object
       required:
         - token
       properties:
@@ -164,6 +262,63 @@ components:
             type: integer
             description: Час життя токена в секундах
             example: 3600
+    #============
+    Transaction:
+      type: object
+      required:
+        - id
+        - adminId
+        - cardId
+        - direction
+        - amount
+        - status
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: cbbb3a77-0a01-4e26-b427-598ea05240d9
+          readOnly: true
+        adminId:
+          type: string
+          format: uuid
+          example: aefff665-1ab1-4160-b090-24321895a7d0
+          readOnly: true
+        cardId:
+          type: string
+          format: uuid
+          example: 2d2f75ba-754a-4a94-9f2b-9253298db4aa
+          readOnly: true
+        direction:
+          type: string
+          enum: [ IN, OUT ]
+          example: IN
+        amount:
+          type: integer
+          format: int32
+          example: 100
+        status:
+          type: string
+          enum: [ SUCCESS, CANCELED ]
+          example: SUCCESS
+        note:
+          type: string
+          format: text
+          example: Зарахування 100 балів
+        createdAt:
+          type: string
+          format: date-time
+          example: "2026-07-13T18:32:00Z"
+          description: "Дата та час створення запису"
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2026-07-13T19:32:00Z"
+          description: "Дата та час створення запису"
+          readOnly: true
+
 
     #============
     Error:
