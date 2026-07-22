@@ -14,6 +14,10 @@ tags:
     description: Auth description for admins
   - name: Transactions
     description: Endpoint for CRUD transactions
+  - name: Customers
+    description: Endpoint for CRUD customers
+  - name: Cards
+    description: Endpoint for CRUD cards
 
 paths:
   #Auth
@@ -163,6 +167,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
         404:
           description: Not Found
           content:
@@ -176,17 +186,382 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+    get:
+      parameters:
+        - $ref: "#/components/parameters/cardId"
+      summary: Read all transactions for one card
+      tags:
+        - Transactions
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 
+  /cards/{cardId}/transactions/{transactionId}:
+    get:
+      parameters:
+        - $ref: "#/components/parameters/cardId"
+        - $ref: "#/components/parameters/transactionId"
+      summary: Read one transactions for one card
+      tags:
+        - Transactions
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 
+    put:
+      parameters:
+        - $ref: "#/components/parameters/cardId"
+        - $ref: "#/components/parameters/transactionId"
+      summary: Cancel one transaction for one card
+      tags:
+        - Transactions
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 
+# Customers
+  /customers:
+    get:
+      summary: Get all customers
+      tags:
+        - Customers
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/customer"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 
+  /customers/{customerId}:
+    get:
+      parameters:
+        - $ref: '#/components/parameters/customerId'
+      summary: Get customer by ID
+      tags:
+        - Customers
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/customer"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      parameters:
+        - $ref: '#/components/parameters/customerId'
+      summary: Change customer data by ID
+      tags:
+        - Customers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/customer"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/customer"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      parameters:
+        - $ref: '#/components/parameters/customerId'
+      summary: Delete customer by ID
+      tags:
+        - Customers
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/customer"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 
+# Cards
+  /cards/{cardId}:
+    get:
+      parameters:
+        - $ref: "#/components/parameters/cardId"
+      summary: Get card by id
+      tags:
+        - Cards
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cards"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /cards/{cardId}/activate:
+    put:
+      parameters:
+        - $ref: "#/components/parameters/cardId"
+      summary: Activate card
+      tags:
+        - Cards
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cards"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /cards/{cardId}/block:
+    put:
+      parameters:
+        - $ref: "#/components/parameters/cardId"
+      summary: Block card
+      tags:
+        - Cards
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cards"
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 
 components:
   parameters:
 # CARDS
     cardId:
       name: cardId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+#Transaction
+    transactionId:
+      name: transactionId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+# Customer
+    customerId:
+      name: customerId
       in: path
       required: true
       schema:
@@ -318,6 +693,94 @@ components:
           example: "2026-07-13T19:32:00Z"
           description: "Дата та час створення запису"
           readOnly: true
+   #============
+    customer:
+      type: object
+      required:
+        -firstName
+        -lastName
+        -email
+        -phoneNumber
+        -role
+        -createdAt
+        -updatedAt
+      properties:
+        firstName:
+          type: string
+          format: text
+          example: Vasyl
+        lastName:
+          type: string
+          format: text
+          example: Pupkin
+        email:
+          type: string
+          format: email
+          required: true
+          example: "codillas@gmail.com"
+        phoneNumber:
+          type: string
+          required: true
+          example: +417612312312
+        role:
+          type: string
+          enum: [ BRONZE, SILVER, GOLD ]
+          example: GOLD
+        createdAt:
+          type: string
+          format: date-time
+          example: "2026-07-13T18:32:00Z"
+          description: "Дата та час створення запису"
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2026-07-13T19:32:00Z"
+          description: "Дата та час створення запису"
+          readOnly: true
+      #============
+    cards:
+      type: object
+      required:
+        - id
+        - customerId
+        - balance
+        - status
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: cbbb3a77-0a01-4e26-b427-598ea05240d9
+          readOnly: true
+        customerId:
+          type: string
+          format: uuid
+          example: cbbb3a77-0a01-4e26-b427-598ea05240d9
+          readOnly: true
+        balance:
+          type: integer
+          format: int32
+          example: 150
+        status:
+          type: string
+          enum: [ ACTIVE, BLOCKED ]
+          example: ACTIVE
+        createdAt:
+          type: string
+          format: date-time
+          example: "2026-07-13T18:32:00Z"
+          description: "Дата та час створення запису"
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2026-07-13T19:32:00Z"
+          description: "Дата та час створення запису"
+          readOnly: true
+
+
 
 
     #============
