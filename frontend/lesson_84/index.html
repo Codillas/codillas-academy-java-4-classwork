@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New lesson</title>
+</head>
+<body>
+
+    <h1>Registration</h1>
+
+    <form action="http://localhost:8080" method="POST">
+
+
+        <div>
+        <label for="emailInput">Email:</label>
+            <br>
+        <input
+            id="emailInput"
+            type="email"
+            name="email"
+            placeholder="example@mail.com"
+            required>
+        </div>
+
+        <br>
+
+        <div>
+        <label for="passwordInput">Password:</label>
+            <br>
+        <input
+                id="passwordInput"
+                type="password"
+                name="password"
+                placeholder="your password"
+                required>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="firstNameInput">First Name:</label>
+            <br>
+            <input
+                    id="firstNameInput"
+                    type="text"
+                    name="name"
+                    placeholder="your first name"
+                    required>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="lastNameInput">Last name:</label>
+            <br>
+            <input
+                    id="lastNameInput"
+                    type="text"
+                    name="last name"
+                    placeholder="your last name"
+                    required>
+        </div>
+
+        <br>
+
+        <div>
+            Gender:
+        </div>
+
+        <br>
+
+        <div>
+            <label for="maleInput">Male:</label>
+            <br>
+            <input
+                    id="maleInput"
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    >
+        </div>
+
+        <br>
+
+        <div>
+            <label for="femaleInput">Female:</label>
+            <br>
+            <input
+                    id="femaleInput"
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    >
+        </div>
+
+        <br>
+
+        <div>
+            <label for="XInput">X:</label>
+            <br>
+            <input
+                    id="XInput"
+                    type="radio"
+                    name="gender"
+                    value="x"
+                    >
+        </div>
+
+        <br>
+
+        <div>
+            <label for="countryInput">Country:</label>
+            <select
+                    id="countryInput"
+                    name="country">
+                    <option value="Ukraine">UA</option>
+                    <option value="Germany">DE</option>
+                    <option value="Canada">CA</option>
+            </select>
+        </div>
+
+        <br>
+
+        <div>
+            <label for="expInput">Work Experience:</label>
+            <input
+                    id="expInput"
+                    type="number"
+                    name="Experience"
+            >
+        </div>
+
+        <br>
+
+        <div>
+            <label for="dateInput">Date of Birth:</label>
+            <input
+                    id="dateInput"
+                    type="date"
+                    name="DOB"
+            >
+        </div>
+
+        <br>
+
+        <button
+                type="Submit">
+            Submit
+        </button>
+    </form>
+
+
+
+
+</body>
+</html>
