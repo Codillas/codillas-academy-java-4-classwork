@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h1>Codillas academy</h1>
+
+<h2>Our partners</h2>
+
+<div class="partners">
+    <article class="partner">Partner 1</article>
+    <article class="partner">Partner 2</article>
+    <article class="partner">Partner 3</article>
+</div>
+
+<br>
+
+<button class="butt">Link to google</button>
+
+<section>
+    <h2>:hover та :active</h2>
+    <button class="demo-button">Наведи та натисни мене</button>
+</section>
+
+<section>
+    <h2>:visited</h2>
+    <a href="https://www.google.com" target="_blank">
+        Відкрити Google
+    </a>
+</section>
+
+<section>
+    <h2>:focus, :required, :not(:required), :placeholder-shown</h2>
+
+    <label for="email">Email — обов'язкове поле:</label>
+    <input
+            class="demo-input"
+            id="email"
+            type="email"
+            placeholder="name@email.com"
+            required
+    >
+
+    <label for="city">Місто — необов'язкове поле:</label>
+    <input
+            class="demo-input"
+            id="city"
+            type="text"
+            placeholder="Наприклад, Львів"
+    >
+</section>
+
+<section>
+    <h2>:checked</h2>
+
+    <label>
+        <input type="checkbox">
+        Я погоджуюся з правилами
+    </label>
+</section>
+
+<section>
+    <h2>:enabled та :disabled</h2>
+
+    <label>
+        <input type="checkbox" id="enable-field">
+        Активувати поле
+    </label>
+
+    <input
+            class="toggle-field"
+            id="disabled-field"
+            type="text"
+            value="Зараз поле вимкнене"
+            disabled
+    >
+</section>
+
+<section>
+    <h2>:read-only</h2>
+
+    <input
+            class="demo-input"
+            type="text"
+            value="Цей текст не можна змінити"
+            readonly
+    >
+</section>
+
+<script>
+    const checkbox = document.querySelector("#enable-field");
+    const field = document.querySelector("#disabled-field");
+
+    checkbox.addEventListener("change", function () {
+        field.disabled = !this.checked;
+
+        if (this.checked) {
+            field.value = "Тепер поле активне";
+        } else {
+            field.value = "Зараз поле вимкнене";
+        }
+    });
+</script>
+
+</body>
+</html>
